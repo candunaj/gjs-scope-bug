@@ -1,37 +1,60 @@
-gjs-bug
-==============================================================================
+When a component yields hash with components, as in the following example:
 
-[Short description of the addon.]
-
-
-Compatibility
-------------------------------------------------------------------------------
-
-* Ember.js v3.28 or above
-* Embroider or ember-auto-import v2
-
-
-Installation
-------------------------------------------------------------------------------
-
-```
-ember install gjs-bug
+```hbs
+<!-- special.gjs -->
+const components = { button: hbs`<button>...</button>`};
+{{yield components}}
 ```
 
+```hbs
+<!-- my-button.gjs -->
+import Special from './special';
+<template>
+  <Special as |b|>
+    <b.button />
+  </Special>
+</template>
+```
 
-Usage
-------------------------------------------------------------------------------
+then rollup plugin `glimmerTemplateTag` generates 'b' in the scope. 'b' is undefined in the generated javascript file as you can see below:
 
-[Longer description of how to use the addon in apps.]
+```js
+// my-button.js
+import templateOnly from '@ember/component/template-only';
+import { setComponentTemplate } from '@ember/component';
+import { precompileTemplate } from '@ember/template-compilation';
+import Special from './special.js';
 
+var myButton = setComponentTemplate(
+  precompileTemplate(
+    `
+  <Special as |b|>
+    <b.button />
+  </Special>
+`,
+    {
+      strictMode: true,
+      scope: () => ({
+        Special,
+        b,
+      }),
+    }
+  ),
+  templateOnly('my-button', '_myButton')
+);
 
-Contributing
-------------------------------------------------------------------------------
+export { myButton as default };
+```
 
-See the [Contributing](CONTRIBUTING.md) guide for details.
+## Expected result
 
+'b' shouldn't be in the scope.
 
-License
-------------------------------------------------------------------------------
-
-This project is licensed under the [MIT License](LICENSE.md).
+```js
+{
+  ...,
+  scope: () => ({
+    Special,
+  })
+}
+```
