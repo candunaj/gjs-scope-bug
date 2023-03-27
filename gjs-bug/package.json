@@ -44,7 +44,8 @@
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.5.1",
     "rollup": "^2.67.0",
-    "rollup-plugin-copy": "^3.4.0"
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-glimmer-template-tag": "^0.3.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
@@ -55,10 +56,12 @@
   "ember-addon": {
     "version": 2,
     "type": "addon",
-    "main": "addon-main.cjs"
+    "main": "addon-main.cjs",
+    "app-js": {
+    }
   },
   "exports": {
-    ".": "./dist/index.js", 
+    ".": "./dist/index.js",
     "./*": "./dist/*.js",
     "./addon-main.js": "./addon-main.cjs"
   }
