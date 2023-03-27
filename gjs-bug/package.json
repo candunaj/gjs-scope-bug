@@ -58,6 +58,8 @@
     "type": "addon",
     "main": "addon-main.cjs",
     "app-js": {
+      "./components/my-button.js": "./dist/_app_/components/my-button.js",
+      "./components/special.js": "./dist/_app_/components/special.js"
     }
   },
   "exports": {
