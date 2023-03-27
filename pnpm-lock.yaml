@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 overrides:
   '@types/eslint': ^7.0.0
+  '@glimmer/syntax': 0.84.3
 
 importers:
 
@@ -1955,15 +1956,6 @@ packages:
       '@glimmer/interfaces': 0.83.1
       '@glimmer/util': 0.83.1
       '@glimmer/validator': 0.83.1
-    dev: true
-
-  /@glimmer/syntax/0.83.1:
-    resolution: {integrity: sha512-n3vEd0GtjtgkOsd2gqkSimp8ecqq5KrHyana/s1XJZvVAPD5rMWT9WvAVWG8XAktns8BxjwLIUoj/vkOfA+eHg==}
-    dependencies:
-      '@glimmer/interfaces': 0.83.1
-      '@glimmer/util': 0.83.1
-      '@handlebars/parser': 2.0.0
-      simple-html-tokenizer: 0.5.11
     dev: true
 
   /@glimmer/syntax/0.84.3:
@@ -5622,7 +5614,7 @@ packages:
     hasBin: true
     dependencies:
       '@glimmer/reference': 0.83.1
-      '@glimmer/syntax': 0.83.1
+      '@glimmer/syntax': 0.84.3
       '@glimmer/validator': 0.83.1
       async-promise-queue: 1.0.5
       colors: 1.4.0
